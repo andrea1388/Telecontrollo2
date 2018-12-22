@@ -8,6 +8,10 @@ Il sistema è basato su una raspberry e permette di controllare da remoto lo sta
 
 Il software prevede alcuni componenti:
 1) un server che riceve i comandi dal decoder dtmf, li elabora ed esegue i comandi
-2) un interfaccia a linea di comando per leggere/scrivere le uscite
+2) un programma eseguibile da linea di comando, chiamato controllolinea, per leggere/scrivere le uscite
 3) alcune pagine php, servite da apache, che leggono/scrivono le uscite
 
+Uso di controllolinea:
+controllolinea [<numero linea> <on|off|offonoff tempo]>
+senza parametri restituisce lo stato delle 16 linee
+immettendo il numero linea, da 1 a 16, è obbligatorio specificare on off o offonoff. offonoff effettua un ciclo dove il paramtero tempo indica il tempo di on
