@@ -15,3 +15,8 @@ Uso di controllolinea:
 controllolinea [<numero linea> <on|off|offonoff tempo]>
 senza parametri restituisce lo stato delle 16 linee
 immettendo il numero linea, da 1 a 16, è obbligatorio specificare on off o offonoff. offonoff effettua un ciclo dove il paramtero tempo indica il tempo di on
+
+Configurazione sistema operativo
+
+sudo adduser www-data i2c
+

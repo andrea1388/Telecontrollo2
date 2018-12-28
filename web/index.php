@@ -31,8 +31,8 @@ function refresh() {
             if (this.readyState == 4 && this.status == 200) 
             {
 		    	var valore=this.responseText;
-		    	var stato=parseInt("0x"+ valore);
-		    	var numerolinee= 4*valore.length; 
+		    	var stato=parseInt(valore);
+		    	var numerolinee= 4*(valore.length-2); 
 		    	$("#tonto").text(stato + " " + numerolinee);
 		    	for(i=0;i<numerolinee;i++)
 		    	{
@@ -77,8 +77,8 @@ function flash(linea,tempo,stato) {
 	</script>
   </head>
 <?php
-	 exec("/root/Telecontrollo2/controllolinea/leggilinee.sh" ,$op, $ret);
-	 echo $ret." ".$op[0]. "<br>";
+	 exec("/usr/Telecontrollo2/controllolinea/leggilinee.sh" ,$op, $ret);
+	 //echo $ret." --- ".$op[0]. "<br>";
 	 if ($ret==0) {
 	 	$numerolinee=4*(strlen($op[0])-2);
 		$Statolinea=decodifica(base_convert(substr($op[0],2), 16, 10),$numerolinee);
