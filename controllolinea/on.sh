@@ -7,5 +7,5 @@ then
     echo "on <linea>"
     exit
 fi
-
+cd /usr/Telecontrollo2/controllolinea
 ./controllolinea.sh $1 on

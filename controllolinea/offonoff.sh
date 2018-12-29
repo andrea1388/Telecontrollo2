@@ -7,7 +7,7 @@ then
     echo "offonoff <linea> <secondi di on>"
     exit
 fi
-
+cd /usr/Telecontrollo2/controllolinea
 ./controllolinea.sh $1 off
 ./controllolinea.sh $1 on
 sleep $2

@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST["login"])) {
 	session_start();
-	if($_POST["login"]=="pi" && $_POST["password"]=="cicciociccio")
+	if($_POST["login"]=="cisar" && $_POST["password"]=="Pz19!")
 	{
     	$_SESSION["user"]=$_POST["login"];
     	header('Location: index.php');

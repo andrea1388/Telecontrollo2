@@ -7,5 +7,6 @@ then
     echo "off <linea>"
     exit
 fi
+cd /usr/Telecontrollo2/controllolinea
 
 ./controllolinea.sh $1 off

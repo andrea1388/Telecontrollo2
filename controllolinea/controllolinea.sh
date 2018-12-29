@@ -2,6 +2,7 @@
 # controllolinea <linea> <on|off>
 
 #controlla il numero di parametri
+
 if [ "$#" -lt 2 ]
 then
     echo "controllolinea <linea> <on|off>"
@@ -20,6 +21,7 @@ then
 fi
 
 #legge lo stato attuale
+cd /usr/Telecontrollo2/controllolinea
 sl1=$(./leggilinee.sh)
 
 # se linea > 8 usa l'altro pcf
