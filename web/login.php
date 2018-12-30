@@ -1,7 +1,8 @@
 <?php
 if (isset($_POST["login"])) {
 	session_start();
-	if($_POST["login"]=="cisar" && $_POST["password"]=="Pz19!")
+	$logindata = parse_ini_file("/etc/telecontrollo/tlc.ini");
+	if($_POST["login"]==$logindata["user"] && $_POST["password"]==$logindata["password")
 	{
     	$_SESSION["user"]=$_POST["login"];
     	header('Location: index.php');

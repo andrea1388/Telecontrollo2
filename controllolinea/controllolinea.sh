@@ -12,6 +12,7 @@ fi
 l=$1 # il numero della linea da comandare
 cmd=$(echo "$2" | awk '{print tolower($0)}') # il comando (in minuscolo)
 base=0x38 # indirizzo del primo pcf
+canalei2c=1
 
 #controlla che il numero di linea sia corretto
 if [ "$l" -lt 1 ] || [ "$l" -gt 16 ]
@@ -36,15 +37,13 @@ if [ "$cmd" == "on" ]
 then
     b=$((2**$(($l-1))))
     out=$((sl1|$b))
-    #echo i2cset -y 1 $base $out
-    i2cset -y 1 $base $out
+    i2cset -y $canalei2c $base $out
 elif [ "$cmd" == "off" ]
 then
     b=$((2**$(($l-1))))
     b=$((255-$b))
     out=$((sl1&$b))
-    #echo i2cset -y 1 $base $out
-    i2cset -y 1 $base $out
+    i2cset -y $canalei2c $base $out
 else
     echo "controllolinea <linea> <on|off>"
     exit
