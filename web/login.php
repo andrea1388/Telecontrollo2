@@ -1,13 +1,14 @@
 <?php
+error_reporting(E_ALL);
 if (isset($_POST["login"])) {
 	session_start();
 	$logindata = parse_ini_file("/etc/telecontrollo/tlc.ini");
-	if($_POST["login"]==$logindata["user"] && $_POST["password"]==$logindata["password")
+	if($_POST["login"]==$logindata["user"] && $_POST["password"]==$logindata["password"])
 	{
-    	$_SESSION["user"]=$_POST["login"];
-    	header('Location: index.php');
-    	exit;
-    }
+        	$_SESSION["user"]=$_POST["login"];
+		header('Location: index.php');
+    	    exit;
+	}
     $err="Dati errati";
 }
 ?>

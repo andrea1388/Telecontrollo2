@@ -2,7 +2,8 @@
 	session_start();
   	if (!isset($_SESSION['user'])) 
 		header('Location: login.php');
-	$linee = array("Link Nazionale", "Boh", "Bah");
+	$linee = array("Link Nazionale", "?","?","?","?","?"
+    ,"?","?","?","?","?","?","?","?","?","?","?",);
 ?>
 <!DOCTYPE html>
 <html lang="en">
