@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+$err="";
 if (isset($_POST["login"])) {
 	session_start();
 	$logindata = parse_ini_file("/etc/telecontrollo/tlc.ini");
@@ -23,7 +23,7 @@ if (isset($_POST["login"])) {
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
     <title>Login</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="grid.css" rel="stylesheet">
   </head>
 
