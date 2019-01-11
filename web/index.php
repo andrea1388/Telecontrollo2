@@ -22,6 +22,7 @@
 
 	<script>
 		var myVar = setInterval(refresh, 1000);
+		var myVar2 = setInterval(refresh2, 5000);
 function refresh() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() 
@@ -57,6 +58,19 @@ function refresh() {
             }
         }
         xmlhttp.open("GET", "stato.php", true);
+        xmlhttp.send();
+}
+function refresh2() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+		    	var valore=this.responseText;
+		    	$("#statoina").html(valore);
+            }
+        }
+        xmlhttp.open("GET", "statoina.php", true);
         xmlhttp.send();
 }
 function set(linea,stato) {
@@ -119,7 +133,7 @@ function flash(linea,tempo,stato) {
 		?>
       </div>
 
-     
+    <label id="statoina">-</label>     
     </div> <!-- /container -->
     </form>
   </body>
