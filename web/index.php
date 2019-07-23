@@ -2,8 +2,8 @@
 	session_start();
   	if (!isset($_SESSION['user'])) 
 		header('Location: login.php');
-	$linee = array("Link Nazionale", "?","?","?","?","?"
-    ,"?","?","?","?","?","?","?","?","?","?","?",);
+	$linee = array("5V centralina meteo e rasp aerei", "24V connessione eolo","inutilizzato","ATV postazione","computer","link nazionale"
+    ,"meteowebcam","?","mikrotik wifi","switch router lan","radio remota","videoserver + webcam","?","?","?","tasto accensione pc",);
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,4 +1,6 @@
 <?php
+	session_start();
+	if (!isset($_SESSION['user'])) header('Location: login.php');
 	$l=$_GET["linea"];
 	$tempo=$_GET["tempo"];
 	//$cmd=$_GET["stato"];
