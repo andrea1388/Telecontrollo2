@@ -4,14 +4,16 @@
 #controlla il numero di parametri
 if [ "$#" -lt 2 ]
 then
-    echo "offonoff <linea> <secondi di on>"
+    echo "flash <linea> <secondi di flash>"
     exit
 fi
 cd /usr/Telecontrollo2/controllolinea
 
 sl=$(./leggilinea.sh $1)
 
-if [ $sl -eq "0"]
+echo $sl
+
+if [ $sl -eq "0" ]
 then
 ./controllolinea.sh $1 on
 sleep $2
