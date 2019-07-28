@@ -10,10 +10,11 @@ import time
 import subprocess
 import RPi.GPIO as GPIO
 import time
+import sys
+sys.stdout.flush()
 toni = []
-password = ["1","1"]
-tempo_ultimotono=time.time()
-parametriE2speak = "-v it -p 70 -s 155 2>/dev/null"
+password = ["5","0"]
+
 clpath="/usr/Telecontrollo2/controllolinea/"
 GPIO.setmode(GPIO.BCM)
 
@@ -42,39 +43,40 @@ def processa(toni):
     print("linea=",l)
     if(toni[2]=="0"):
         subprocess.check_output([clpath+"controllolinea.sh",str(l),"off"])
+        time.sleep(2)
         subprocess.call([clpath + "parla.sh","spento "+str(l)])
-        # print(cmd)
         return
     if(toni[2]=="1"):
         subprocess.check_output([clpath+"controllolinea.sh",str(l),"on"])
+        time.sleep(2)
         subprocess.call([clpath + "parla.sh","acceso "+str(l)])
-        # print(cmd)
         return
     if(toni[2]=="2"):
         out=subprocess.check_output([clpath+"leggilinea.sh",str(l)])
+        time.sleep(2)
         if(out[0] == "0"):
-            #subprocess.call(["./parla.sh"])
             subprocess.call([clpath + "parla.sh",str(l)+ "spento "])
         if(out[0] == "1"):
             subprocess.call([clpath + "parla.sh",str(l)+ "acceso "])
-        # print(cmd)
         return
     return
 
 
 def my_callback(channel):
-    print GPIO.input(21),GPIO.input(22),GPIO.input(23),GPIO.input(24)
+    global tempo_ultimotono
+    global toni
+    # print GPIO.input(21),GPIO.input(22),GPIO.input(23),GPIO.input(24)
     t=GPIO.input(21) + GPIO.input(22)*2 + GPIO.input(23)*4 + GPIO.input(24) *8
-    print "Ricevuto tono", carattere[t]
+    # print "Ricevuto tono", carattere[t]
     if((time.time()-tempo_ultimotono) > 5) :
         toni = []
         print("stato 0")
     tempo_ultimotono=time.time()
     toni.append(carattere[t])
+    print (toni)
     if(len(toni)==5) :
         processa(toni)
         toni = []
-    print (toni)
 
 
 
@@ -82,12 +84,14 @@ def my_callback(channel):
 
 # when a falling edge is detected on port 17, regardless of whatever 
 # else is happening in the program, the function my_callback will be run
-GPIO.add_event_detect(17, GPIO.RISING, callback=my_callback, bouncetime=300)
-print "ciao"
+
+tempo_ultimotono=time.time()
+GPIO.add_event_detect(17, GPIO.FALLING, callback=my_callback, bouncetime=300)
+print "Dtmf server partito"
 
 while True:
     # print GPIO.input(27),GPIO.input(22),GPIO.input(23),GPIO.input(24)
-    time.sleep(1)
+    time.sleep(100)
 
 
 

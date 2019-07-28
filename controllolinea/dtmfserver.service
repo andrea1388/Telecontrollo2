@@ -1,0 +1,10 @@
+[Unit]
+Description=Dtmf server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python -u /usr/Telecontrollo2/controllolinea/dtmfserver.py
+WorkingDirectory=/usr/Telecontrollo2/controllolinea
+
+[Install]
+WantedBy=multi-user.target
