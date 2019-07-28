@@ -13,6 +13,7 @@ toni = []
 password = ["1","1"]
 tempo_ultimotono=time.time()
 parametriE2speak = "-v it -p 70 -s 155 2>/dev/null"
+clpath="/usr/Telecontrollo2/"
 
 
 
@@ -31,16 +32,19 @@ def processa(toni):
         return
     print("linea=",l)
     if(toni[2]=="0"):
-        subprocess.check_output(["controllolinea",str(l),"off"])
+        subprocess.check_output(["./controllolinea.sh",str(l),"off"])
+        subprocess.call([".parla.sh","spento "+str(l)])
         # print(cmd)
         return
     if(toni[2]=="1"):
-        subprocess.check_output(["controllolinea",str(l),"on"])
+        subprocess.check_output(["./controllolinea.sh",str(l),"on"])
+        subprocess.call([".parla.sh","acceso "+str(l)])
         # print(cmd)
         return
     if(toni[2]=="2"):
-        out=subprocess.check_output(["leggilinea",str(l)])
-        subprocess.call(["espeak"])
+        out=subprocess.check_output(["./leggilinea.sh",str(l)])
+        if(out == "")
+        subprocess.call([".parla.sh","acceso "+str(l)])
         # print(cmd)
         return
     return
