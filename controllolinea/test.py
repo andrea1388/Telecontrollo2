@@ -13,7 +13,7 @@ toni = []
 password = ["1","1"]
 tempo_ultimotono=time.time()
 parametriE2speak = "-v it -p 70 -s 155 2>/dev/null"
-clpath="/usr/Telecontrollo2/"
+clpath="/usr/Telecontrollo2/controllolinea/"
 
 
 
@@ -32,19 +32,22 @@ def processa(toni):
         return
     print("linea=",l)
     if(toni[2]=="0"):
-        subprocess.check_output(["./controllolinea.sh",str(l),"off"])
-        subprocess.call([".parla.sh","spento "+str(l)])
+        subprocess.check_output([clpath+"controllolinea.sh",str(l),"off"])
+        subprocess.call([clpath + "parla.sh","spento "+str(l)])
         # print(cmd)
         return
     if(toni[2]=="1"):
-        subprocess.check_output(["./controllolinea.sh",str(l),"on"])
-        subprocess.call([".parla.sh","acceso "+str(l)])
+        subprocess.check_output([clpath+"controllolinea.sh",str(l),"on"])
+        subprocess.call([clpath + "parla.sh","acceso "+str(l)])
         # print(cmd)
         return
     if(toni[2]=="2"):
-        out=subprocess.check_output(["./leggilinea.sh",str(l)])
-        if(out == "")
-        subprocess.call([".parla.sh","acceso "+str(l)])
+        out=subprocess.check_output([clpath+"leggilinea.sh",str(l)])
+        if(out[0] == "0"):
+            #subprocess.call(["./parla.sh"])
+            subprocess.call([clpath + "parla.sh",str(l)+ "spento "])
+        if(out[0] == "1"):
+            subprocess.call([clpath + "parla.sh",str(l)+ "acceso "])
         # print(cmd)
         return
     return
