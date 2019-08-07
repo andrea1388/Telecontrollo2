@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="grid.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
 
 	<script>
 		var myVar = setInterval(refresh, 1000);
@@ -134,7 +135,45 @@ function flash(linea,tempo,stato) {
       </div>
 
     <label id="statoina">-</label>     
+	<canvas id="myChart"></canvas>
     </div> <!-- /container -->
     </form>
   </body>
+  <?php
+			exec("/usr/Telecontrollo2/ina/leggidati.py" ,$op, $ret);
+			//echo "ret=".$op[1]."<br>";
+		?>
+  <script>
+
+		var ctx = document.getElementById('myChart').getContext('2d');
+		var chart = new Chart(ctx, {
+			// The type of chart we want to create
+			type: 'line',
+
+			// The data for our dataset
+			data: {
+				labels: ['-6', '-5', '-4', '-3', '-2', '-1', 'now'],
+				datasets: [{
+					label: 'Tensione batteria',
+					fill: false,
+					backgroundColor: 'rgb(255, 99, 132)',
+					borderColor: 'rgb(255, 99, 132)',
+					//data: [11.4,12,12,12.1,11.8,12,12.1]
+					data: <?php echo $op[1]; ?>
+				}]
+			},
+
+			// Configuration options go here
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							min: 4,
+							max: 14
+						}
+					}]
+				}
+    		}
+		});
+	</script>
 </html>
