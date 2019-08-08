@@ -140,8 +140,8 @@ function flash(linea,tempo,stato) {
     </form>
   </body>
   <?php
-			exec("/usr/Telecontrollo2/ina/leggidati.py" ,$op, $ret);
-			//echo "ret=".$op[1]."<br>";
+			exec("nc -d 127.0.0.1 50007" ,$op, $ret);
+			// echo "ret=".$op[1]."<br>";
 		?>
   <script>
 
@@ -152,7 +152,7 @@ function flash(linea,tempo,stato) {
 
 			// The data for our dataset
 			data: {
-				labels: ['-6', '-5', '-4', '-3', '-2', '-1', 'now'],
+				labels: ['-23','-22','-21','-20','-19','-18','-17','-16','-15','-14','-13','-12','-11','-10','-9','-8','-7','-6', '-5', '-4', '-3', '-2', '-1', 'now'],
 				datasets: [{
 					label: 'Tensione batteria',
 					fill: false,
@@ -168,8 +168,8 @@ function flash(linea,tempo,stato) {
 				scales: {
 					yAxes: [{
 						ticks: {
-							min: 4,
-							max: 14
+							min: 7,
+							max: 13
 						}
 					}]
 				}
