@@ -1,0 +1,10 @@
+[Unit]
+Description=Ina server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python -u /usr/Telecontrollo2/ina/inaserver.py
+WorkingDirectory=/usr/Telecontrollo2/ina
+
+[Install]
+WantedBy=multi-user.target
